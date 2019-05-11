@@ -49,7 +49,7 @@ class NSEStockIntentHandler(AbstractRequestHandler):
 
         if not stock is None:
             price = stock_price(stock)
-            speech_text = "NSE stock price of " + stock + " is " + price
+            speech_text = "NSE stock price of " + stock + " is " + str(price)
 
         else:
             speech_text = "I don't know this stock. Please retry " + stock
