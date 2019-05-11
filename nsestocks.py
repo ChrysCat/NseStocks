@@ -52,7 +52,7 @@ class NSEStockIntentHandler(AbstractRequestHandler):
             speech_text = "NSE stock price of " + stock + " is " + price
 
         else:
-            speech_text = "I don't know this stock. Please retry"
+            speech_text = "I don't know this stock. Please retry " + stock
 
         handler_input.response_builder.speak(speech_text).set_card(
             SimpleCard("NSE stock", speech_text)).set_should_end_session(
