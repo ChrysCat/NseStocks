@@ -1,3 +1,16 @@
+"""
+    This module provides handlers for Alexa SDK calls and
+    obtains NSE stock data from NSE library.
+"""
+
+__author__      = "Chrys Kattirisetti"
+__copyright__ = "Copyright 2019 International Womens Hackathon Project"
+__credits__ = ["Anahita Gottipati", "Sheryl Gomes", "Chrys Kattirisetti"]
+__license__ = "GPL"
+__version__ = "1.0.1"
+__maintainer__ = "Chrys Kattirisetti"
+__email__ = "chryscat@gmail.com"
+
 from nsetools import Nse
 from ask_sdk_core.skill_builder import SkillBuilder
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
@@ -6,14 +19,12 @@ from ask_sdk_core.handler_input import HandlerInput
 from ask_sdk_model import Response
 from ask_sdk_model.ui import SimpleCard
 
-"""This module supports two methods:
-   getting stock price of a given stock.
-   Alert when stock price reaches some threshold - TBD"""
-
-
 def stock_price(symbol):
-    """This function returns the last
-	price of the given symbol"""
+    """
+    This function returns the last
+	price of the given symbol.
+	None if the symbol is not valid.
+	"""
     nse = Nse()
     if nse.is_valid_code(symbol):
         q = nse.get_quote(symbol)
