@@ -11,6 +11,9 @@ __version__ = "1.0.1"
 __maintainer__ = "Chrys Kattirisetti"
 __email__ = "chryscat@gmail.com"
 
+import json
+import os
+import logging
 from nsetools import Nse
 from ask_sdk_core.skill_builder import SkillBuilder
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
@@ -18,6 +21,10 @@ from ask_sdk_core.utils import is_request_type, is_intent_name
 from ask_sdk_core.handler_input import HandlerInput
 from ask_sdk_model import Response
 from ask_sdk_model.ui import SimpleCard
+
+""" Initialize the logger """
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 def stock_price(symbol):
     """
@@ -30,6 +37,7 @@ def stock_price(symbol):
         q = nse.get_quote(symbol)
         return q.get('lastPrice', None)
     else:
+        logger.error("Unknown symbol " + symbol)
         return None
 
 class LaunchRequestHandler(AbstractRequestHandler):
@@ -61,10 +69,10 @@ class NSEStockIntentHandler(AbstractRequestHandler):
         if not stock is None:
             price = stock_price(stock)
             speech_text = "NSE stock price of " + stock + " is " + str(price)
-
         else:
             speech_text = "I don't know this stock. Please retry " + stock
 
+        logger.info(speech_text)
         handler_input.response_builder.speak(speech_text).set_card(
             SimpleCard("NSE stock", speech_text)).set_should_end_session(
             True)
