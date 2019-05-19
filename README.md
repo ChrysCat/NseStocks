@@ -3,16 +3,16 @@
 This library is for building an Alexa skill for real time stock prices from NationalStock Exchange of India using Alexa.
 The library tries to guess the name of the stock from the name uttered by the user and fetches the last price of the stock.
 
-##Getting Started
+## Getting Started
 The github repository forms the AWS Lambda function you'd need to deploy. Checkout the code and build a zip file with the code.
 
-###Prerequisites
+### Prerequisites
 You would need basic familiarity in building Alexa skills using Python. For some examples, refer to https://developer.amazon.com/alexa-skills-kit/alexa-skill-python-tutorial
 To try some examples or to deploy this code:
 1. You would need an Alexa developer account to set up the intents. Build your intents using a few slots for stock symbols.
 2. You would need an AWS account to deploy the Lambda code.
 
-###Installing
+### Installing
 1. Once your intents are built, test them using utterance profiler.
 2. Open AWS console and create a python Lamba function with Python 3.x. Choose Alexa skills kit.
 3. In the function code, upload the zip file containing the source code in the git repository.
@@ -25,7 +25,7 @@ To try some examples or to deploy this code:
 10. Enter the Alexa Skill ID you copied in step 8 in the AWS Lamba function page under the Alexa skills kit.
 10. Save the Lambda function.
 
-###Testing 
+### Testing 
 
 1. In the Alexa developer console, select your skill.
 2. Select Test tab and choose development.
@@ -38,21 +38,18 @@ You can also say "open india stocks price for XXX"
 
 Alexa skill will give you the real time price of the Indian stock.
 
-##Built With
+## Built With
 Python3.x\
 Alexa SDK\
 AWS SDK\
 nsetools library
 
-###Author
+### Author
 Chrys Kattirisetti
 
-###Contributors
+### Contributors
 Anahita Gottipati\
 Sheryl Gomes
 
-###License
-This project is licensed under the MIT License - see the LICENSE.md file for details
-
-###Acknowledgments
+### Acknowledgments
 Inspired by nsetools python library https://github.com/vsjha18/nsetools
