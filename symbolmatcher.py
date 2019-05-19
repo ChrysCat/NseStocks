@@ -26,12 +26,16 @@ nameslist= []
 # Initialize the logger
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
+logger.info("Loading symbolmatcher")
 
 # reading csv file
 with open(filename, 'r') as csvfile:
+    logger.info("Opened file " + filename)
 
     # creating a csv reader object
     csvreader = csv.DictReader(open(filename), fieldnames)
+
+    logger.info("Created csvreader for " + filename)
 
     # skip the header
     headers = next(csvreader)
