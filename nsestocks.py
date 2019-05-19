@@ -14,6 +14,7 @@ __email__ = "chryscat@gmail.com"
 import json
 import os
 import logging
+import symbolmatcher
 from nsetools import Nse
 from ask_sdk_core.skill_builder import SkillBuilder
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
@@ -22,7 +23,7 @@ from ask_sdk_core.handler_input import HandlerInput
 from ask_sdk_model import Response
 from ask_sdk_model.ui import SimpleCard
 
-""" Initialize the logger """
+# Initialize the logger
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
@@ -37,8 +38,13 @@ def stock_price(symbol):
         q = nse.get_quote(symbol)
         return q.get('lastPrice', None)
     else:
-        logger.error("Unknown symbol " + symbol)
-        return None
+        sym = symbolmatcher.findSymbol(symbol)
+        if sym is not None:
+            q = nse.get_quote(sym)
+            return q.get('lastPrice', None)
+        else:
+            logger.error("Unknown symbol " + symbol)
+            return None
 
 class LaunchRequestHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
